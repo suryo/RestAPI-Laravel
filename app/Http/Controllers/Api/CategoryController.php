@@ -28,6 +28,7 @@ class CategoryController extends Controller
         ];
         return response()->json($response, 200);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +43,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd("masuk di post yaa gaes");
+        $id = $request->id;
+        $category = $request->category;
+        //DB::insert("INSERT INTO tbl_category (category) VALUES ('".$category."'); ");
+        DB::update("UPDATE tbl_category SET category = '".$category."' WHERE id=".$id.";");
+        $response =[
+            'success' => true,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+        
     }
 
     /**
@@ -58,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+      
     }
 
     /**
@@ -66,7 +76,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $update_category = $request->update_category;
+        //DB::update("UPDATE tbl_category SET category = '".$category."' WHERE id=".$id.";");
+dd($update_category);
+        dd("UPDATE tbl_category SET category = 'tes' WHERE id=".$id.";");
+        $response =[
+            'success' => true,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+       
     }
 
     /**
@@ -74,6 +93,11 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::delete(("DELETE FROM tbl_category WHERE id=".$id.";"));
+        $response =[
+            'success' => true,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
     }
 }
