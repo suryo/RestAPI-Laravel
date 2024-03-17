@@ -19,16 +19,16 @@ class CategoryController extends Controller
         return $res;
     }
 
-    public function sendResponse($result,$message)
+    public function sendResponse($result, $message)
     {
-        $response =[
+        $response = [
             'success' => true,
             'data' => $result,
-            'message' =>$message
+            'message' => $message
         ];
         return response()->json($response, 200);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,13 +46,12 @@ class CategoryController extends Controller
         $id = $request->id;
         $category = $request->category;
         //DB::insert("INSERT INTO tbl_category (category) VALUES ('".$category."'); ");
-        DB::update("UPDATE tbl_category SET category = '".$category."' WHERE id=".$id.";");
-        $response =[
+        DB::update("UPDATE tbl_category SET category = '" . $category . "' WHERE id=" . $id . ";");
+        $response = [
             'success' => true,
             'message' => 'success'
         ];
         return response()->json($response, 200);
-        
     }
 
     /**
@@ -68,7 +67,6 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-      
     }
 
     /**
@@ -78,14 +76,13 @@ class CategoryController extends Controller
     {
         $update_category = $request->update_category;
         //DB::update("UPDATE tbl_category SET category = '".$category."' WHERE id=".$id.";");
-dd($update_category);
-        dd("UPDATE tbl_category SET category = 'tes' WHERE id=".$id.";");
-        $response =[
+        dd($update_category);
+        dd("UPDATE tbl_category SET category = 'tes' WHERE id=" . $id . ";");
+        $response = [
             'success' => true,
             'message' => 'success'
         ];
         return response()->json($response, 200);
-       
     }
 
     /**
@@ -93,8 +90,8 @@ dd($update_category);
      */
     public function destroy(string $id)
     {
-        DB::delete(("DELETE FROM tbl_category WHERE id=".$id.";"));
-        $response =[
+        DB::delete(("DELETE FROM tbl_category WHERE id=" . $id . ";"));
+        $response = [
             'success' => true,
             'message' => 'success'
         ];

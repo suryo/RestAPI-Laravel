@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\CategoryController;
-
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\DasboardController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', LoginController::class);
+
+
 // Route::apiResource('/category', App\Http\Controllers\Api\CategoryController::class);
 Route::apiResource('/category', CategoryController::class);
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::get('/dashboard', [DasboardController::class, 'index']);
+    Route::post('logout', LogoutController::class);
+});
