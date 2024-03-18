@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use JWTAuth;
 
 class DashboardController extends Controller
 {
@@ -13,19 +13,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-       
+        $user = JWTAuth::parseToken()->authenticate();
+        return $user;
     }
-
-    public function sendResponse($result, $message)
-    {
-        $response = [
-            'success' => true,
-            'data' => $result,
-            'message' => $message
-        ];
-        return response()->json($response, 200);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +30,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-       
+        //
     }
 
     /**
@@ -56,6 +46,7 @@ class DashboardController extends Controller
      */
     public function edit(string $id)
     {
+        //
     }
 
     /**
@@ -63,7 +54,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        //
     }
 
     /**
@@ -71,6 +62,6 @@ class DashboardController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        //
     }
 }
